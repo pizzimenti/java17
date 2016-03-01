@@ -6,7 +6,13 @@ public class Student {
   private String name;
   private Date enroll_date;
 
-  public int GetId() {
+  public Student(String name) {
+    this.name = name;
+    this.enroll_date = new Date();
+  }
+
+//getters
+  public int getId() {
     return id;
   }
 
@@ -18,11 +24,7 @@ public class Student {
     return enroll_date;
   }
 
-  public Student(String name, Date date) {
-    this.name = name;
-    this.enroll_date = date;
-  }
-
+//database
   public static List<Student> all() {
     String sql = "SELECT * FROM students";
     try (Connection con = DB.sql2o.open()) {
@@ -30,6 +32,27 @@ public class Student {
     }
   }
 
+  public void save() {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO students (name, enroll_date) values (:name, :enroll_date)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", name)
+        .addParameter("enroll_date", enroll_date)
+        .executeUpdate()
+        .getKey();
+    }
+  }
+
+  @Override
+    public boolean equals(Object otherStudent){
+      if (!(otherStudent instanceof Student)) {
+        return false;
+      } else {
+        Student newStudent = (Student) otherStudent;
+        return this.getName().equals(newStudent.getName()) &&
+               this.getId() == newStudent.getId();
+      }
+    }
   // public void save() {
   //   try(Connection con = DB.sql2o.open()) {
   //     String sql = "INSERT INTO tasks (description) VALUES (:description)";
