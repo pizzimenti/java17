@@ -70,10 +70,19 @@ public class Course {
         .addParameter("student_id", student.getId())
         .addParameter("course_id", id)
         .executeUpdate();
-      }
     }
+  }
 
-  // public void addCourse(Course course) {
-  //
-  // }
+  public List<Student> getStudents() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT students.* FROM courses " +
+                    "JOIN students_courses ON (courses.id = students_courses.course_id) " +
+                    "JOIN students ON (students_courses.student_id = students.id) " +
+                    "WHERE courses.id =:course_id";
+      List<Student> roster = con.createQuery(sql)
+        .addParameter("course_id", id)
+        .executeAndFetch(Student.class);
+      return roster;
+    }
+  }
 }

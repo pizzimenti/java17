@@ -44,7 +44,7 @@ public class StudentTest {
     myStudent.save();
 
     myStudent.addCourse(myCourse);
-    Student savedStudent = myStudent.getCourses().get(0);
-    assertTrue(myStudent.equals(savedStudent));
+    Course savedCourse = myStudent.getCourses().get(0);
+    assertTrue(myCourse.equals(savedCourse));
   }
 }
