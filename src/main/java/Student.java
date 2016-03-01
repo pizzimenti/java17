@@ -52,6 +52,16 @@ public class Student {
     }
   }
 
+  public void addCourse(Course course) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO students_courses (student_id, course_id) VALUES (:student_id, :course_id)";
+      con.createQuery(sql)
+      .addParameter("student_id", id)
+      .addParameter("course_id", course.getId())
+      .executeUpdate();
+    }
+  }
+
   @Override
     public boolean equals(Object otherStudent){
       if (!(otherStudent instanceof Student)) {
@@ -62,12 +72,4 @@ public class Student {
                this.getId() == newStudent.getId();
       }
     }
-  // public void save() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     String sql = "INSERT INTO tasks (description) VALUES (:description)";
-  //     con.createQuery(sql)
-  //       .addParameter("description", description)
-  //       .executeUpdate();
-  //   }
-  // }
 }

@@ -34,4 +34,17 @@ public class StudentTest {
     Student savedStudent = Student.find(myStudent.getId());
     assertTrue(myStudent.equals(savedStudent));
   }
+
+  @Test
+  public void addCourse_addsCourseToStudent() {
+    Course myCourse = new Course("Intro to Java", "Java101");
+    myCourse.save();
+
+    Student myStudent = new Student("Frank Leathers");
+    myStudent.save();
+
+    myStudent.addCourse(myCourse);
+    Student savedStudent = myStudent.getCourses().get(0);
+    assertTrue(myStudent.equals(savedStudent));
+  }
 }

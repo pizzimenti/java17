@@ -54,8 +54,6 @@ public class Course {
     }
   }
 
-
-
   public static Course find(int id) {
     try (Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM courses WHERE id=:id";
@@ -64,4 +62,18 @@ public class Course {
         .executeAndFetchFirst(Course.class);
     }
   }
+
+  public void addStudent(Student student) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO students_courses (student_id, course_id) VALUES (:student_id, :course_id)";
+      con.createQuery(sql)
+        .addParameter("student_id", student.getId())
+        .addParameter("course_id", id)
+        .executeUpdate();
+      }
+    }
+
+  // public void addCourse(Course course) {
+  //
+  // }
 }
