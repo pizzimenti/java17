@@ -19,32 +19,32 @@ public class StudentTest {
     assertTrue(savedStudent.equals(newStudent));
   }
 
+  @Test
+  public void save_assignsIdToObject() {
+    Student myStudent = new Student ("Frank Leathers");
+    myStudent.save();
+    Student savedStudent = Student.all().get(0);
+    assertEquals(myStudent.getId(), savedStudent.getId());
+  }
+
+  @Test
+  public void find_findsStudentInDatabase_true() {
+    Student myStudent = new Student ("Frank Leathers");
+    myStudent.save();
+    Student savedStudent = Student.find(myStudent.getId());
+    assertTrue(myStudent.equals(savedStudent));
+  }
+
   // @Test
-  // public void save_assignsIdToObject() {
-  //   Task myTask = new Task ("Mow the lawn");
-  //   myTask.save();
-  //   Task savedTask = Task.all().get(0);
-  //   assertEquals(myTask.getId(), savedTask.getId());
-  // }
-  //
-  // @Test
-  // public void find_findsTaskInDatabase_true() {
-  //   Task myTask = new Task ("Mow the lawn");
-  //   myTask.save();
-  //   Task savedTask = Task.find(myTask.getId());
-  //   assertTrue(myTask.equals(savedTask));
-  // }
-  //
-  // @Test
-  // public void addCategory_addsCategoryToTask() {
+  // public void addCategory_addsCategoryToStudent() {
   //   Category myCategory = new Category("Household chores");
   //   myCategory.save();
   //
-  //   Task myTask = new Task("Mow the lawn");
-  //   myTask.save();
+  //   Student myStudent = new Student("Frank Leathers");
+  //   myStudent.save();
   //
-  //   myTask.addCategory(myCategory);
-  //   Category savedCategory = myTask.getCategories().get(0);
+  //   myStudent.addCategory(myCategory);
+  //   Category savedCategory = myStudent.getCategories().get(0);
   //   assertTrue(myCategory.equals(savedCategory));
   // }
   //
@@ -53,24 +53,24 @@ public class StudentTest {
   //   Category myCategory = new Category("Household chores");
   //   myCategory.save();
   //
-  //   Task myTask = new Task("Mow the lawn");
-  //   myTask.save();
+  //   Student myStudent = new Student("Frank Leathers");
+  //   myStudent.save();
   //
-  //   myTask.addCategory(myCategory);
-  //   List savedCategories = myTask.getCategories();
+  //   myStudent.addCategory(myCategory);
+  //   List savedCategories = myStudent.getCategories();
   //   assertEquals(1, savedCategories.size());
   // }
   //
   // @Test
-  // public void delete_deletesAllTasksAndListsAssociations_emptyList() {
+  // public void delete_deletesAllStudentsAndListsAssociations_emptyList() {
   //   Category myCategory = new Category("Household chores");
   //   myCategory.save();
   //
-  //   Task myTask = new Task("Mow the lawn");
-  //   myTask.save();
+  //   Student myStudent = new Student("Frank Leathers");
+  //   myStudent.save();
   //
-  //   myTask.addCategory(myCategory);
-  //   myTask.delete();
-  //   assertEquals(0, myCategory.getTasks().size());
+  //   myStudent.addCategory(myCategory);
+  //   myStudent.delete();
+  //   assertEquals(0, myCategory.getStudents().size());
   // }
 }

@@ -43,6 +43,15 @@ public class Student {
     }
   }
 
+  public static Student find(int id) {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM students WHERE id=:id";
+      return con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Student.class);
+    }
+  }
+
   @Override
     public boolean equals(Object otherStudent){
       if (!(otherStudent instanceof Student)) {
