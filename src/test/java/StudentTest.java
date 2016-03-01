@@ -8,6 +8,6 @@ public class StudentTest {
 
   @Test
   public void all_emptyAtFirst() {
-    assertEquals(Task.all().size(), 0);
+    assertEquals(Student.all().size(), 0);
   }
 }
