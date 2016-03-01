@@ -34,43 +34,4 @@ public class StudentTest {
     Student savedStudent = Student.find(myStudent.getId());
     assertTrue(myStudent.equals(savedStudent));
   }
-
-  // @Test
-  // public void addCategory_addsCategoryToStudent() {
-  //   Category myCategory = new Category("Household chores");
-  //   myCategory.save();
-  //
-  //   Student myStudent = new Student("Frank Leathers");
-  //   myStudent.save();
-  //
-  //   myStudent.addCategory(myCategory);
-  //   Category savedCategory = myStudent.getCategories().get(0);
-  //   assertTrue(myCategory.equals(savedCategory));
-  // }
-  //
-  // @Test
-  // public void getCategories_returnsAllCategories_List() {
-  //   Category myCategory = new Category("Household chores");
-  //   myCategory.save();
-  //
-  //   Student myStudent = new Student("Frank Leathers");
-  //   myStudent.save();
-  //
-  //   myStudent.addCategory(myCategory);
-  //   List savedCategories = myStudent.getCategories();
-  //   assertEquals(1, savedCategories.size());
-  // }
-  //
-  // @Test
-  // public void delete_deletesAllStudentsAndListsAssociations_emptyList() {
-  //   Category myCategory = new Category("Household chores");
-  //   myCategory.save();
-  //
-  //   Student myStudent = new Student("Frank Leathers");
-  //   myStudent.save();
-  //
-  //   myStudent.addCategory(myCategory);
-  //   myStudent.delete();
-  //   assertEquals(0, myCategory.getStudents().size());
-  // }
 }
