@@ -1,0 +1,14 @@
+<h2>$student.getName()</h2>
+
+<h4>Edit $student.getName()'s Name</h4>
+
+<form action="/student/$student.getId()" method="post">
+  <div class="form-group">
+    <input required value="$student.getName()" type="text" class="form-control" name="student" id="student">
+  </div>
+  <h4>Course List</h4>
+  <ul>
+    #foreach($course in $courseList)
+      <li>$course.getName()</li>
+    #end
+  </ul>

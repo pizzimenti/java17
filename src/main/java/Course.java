@@ -73,7 +73,7 @@ public class Course {
     }
   }
 
-  public List<Student> getStudents() {
+  public static List<Student> getStudents(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT students.* FROM courses " +
                     "JOIN students_courses ON (courses.id = students_courses.course_id) " +

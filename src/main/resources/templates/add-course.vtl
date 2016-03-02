@@ -1,0 +1,19 @@
+<h2>Add a course:</h2>
+
+<form action="/add-course" method="post">
+  <div class="form-group">
+    <input required placeholder="New Course Name" type="text" class="form-control" name="course" id="course">
+  </div>
+  <div class="form-group">
+    <input required placeholder="New Course Number" type="text" class="form-control" name="courseNumber" id="courseNumber">
+  </div>
+  <button id="submit-course" type="submit" class="btn btn-info">Submit</button>
+</form>
+
+<h3>Existing Courses:</h3>
+
+<ul>
+#foreach ($course in $courses)
+  <li>$course.getName()</li>
+#end
+</ul>
