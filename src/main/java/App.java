@@ -53,14 +53,14 @@ public class App {
 
     post("/add-course", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      model.put("students", Student.all());
-      model.put("courses", Course.all());
       model.put("template", "templates/add-course.vtl");
 
       String courseName = request.queryParams("course");
       String courseNumber = request.queryParams("courseNumber");
       Course newCourse = new Course(courseName, courseNumber);
       newCourse.save();
+      model.put("students", Student.all());
+      model.put("courses", Course.all());
 
       return new ModelAndView (model, layout);
     }, new VelocityTemplateEngine());
